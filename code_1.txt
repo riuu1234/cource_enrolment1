@@ -1,0 +1,58 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Structure to represent a Course
+typedef struct Course 
+{
+    int id;
+    char title[100];
+    char description[200];
+    char instructor[50];
+    int capacity;
+    int enrolled_students;
+} Course;
+
+   // Function to enroll a student in a course
+   void enrollStudent(Course *course)
+
+ {
+    if (course->enrolled_students < course->capacity) 
+    {
+        course->enrolled_students++;
+        printf("You have successfully enrolled in the course.\n");
+    } 
+    else
+    {
+        printf("Sorry, the course is already at maximum capacity. Enrollment failed.\n");
+    }
+}
+
+int main() 
+   {
+    Course course1 = {1, "Course 1", "This is course 1 description.", "Instructor 1", 30, 0};
+    Course course2 = {2, "Course 2", "This is course 2 description.", "Instructor 2", 25, 0};
+
+    // For simplicity, assume the list of available courses is predefined.
+
+    Course available_courses[] = {course1, course2};
+    int num_courses = sizeof(available_courses) / sizeof(available_courses[0]);
+
+    // Simulate a BSc student enrolling in a course (Course 1)
+
+    int student_id = 1001;
+    int course_to_enroll = 1;
+    // Index of the course in available_courses array
+
+    printf("Welcome, BSc Student (ID: %d)\n", student_id);
+    printf("Available Courses:\n");
+    for (int i = 0; i < num_courses; i++)
+    {
+        printf("%d. %s\n", available_courses[i].id, available_courses[i].title);
+    }
+
+    // Simulate enrollment for the student
+    enrollStudent(&available_courses[course_to_enroll]);
+
+    return 0;
+}
